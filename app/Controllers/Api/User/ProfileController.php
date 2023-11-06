@@ -17,6 +17,7 @@ class ProfileController extends BaseController
 
     public function index()
     {
-        return $this->respond(['users' => $this->model->findAll()], 200);
+        $id = session()->get('id');
+        return $this->respond($this->model->select('email')->where('id', $id)->first(), 200);
     }
 }
